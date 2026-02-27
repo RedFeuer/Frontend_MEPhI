@@ -1,11 +1,12 @@
-// ===== helpers =====
+/* обработкчик ввода числа */
 function isIntegerString(s) {
   return /^\s*\d+\s*$/.test(s);
 }
 
+/* обработкчик ввода числа */
 function promptInt(message) {
   const raw = prompt(message);
-  if (raw === null) return null;
+  if (raw === null) return null; // пользователь прожал "Отмена"
   if (!isIntegerString(raw)) return NaN;
   return Number(raw.trim());
 }
@@ -121,7 +122,7 @@ function task6_palindrome() {
   alert(s === rev ? "Да" : "Нет");
 }
 
-// ===== bindings =====
+/* привязки кнопок на странице к реализованным функциям */
 document.getElementById("t2").addEventListener("click", task2_month);
 document.getElementById("t3").addEventListener("click", task3_nPrimes);
 document.getElementById("t4").addEventListener("click", task4_counter);
