@@ -11,7 +11,7 @@ function promptInt(message) {
   return Number(raw.trim());
 }
 
-// ===== task 2 =====
+/* Задание 2 */
 function task2_month() {
   const month = promptInt("Введите номер месяца (1–12):");
   if (month === null) return;
@@ -30,7 +30,7 @@ function task2_month() {
   alert(months[month - 1]);
 }
 
-// ===== task 3 =====
+/* Задание 3 */
 function isPrime(x) {
   if (x < 2) return false;
   if (x === 2) return true;
@@ -63,7 +63,7 @@ function task3_nPrimes() {
   alert(primes.join(" "));
 }
 
-// ===== task 4 =====
+/* Задание 4 */
 function task4_counter() {
   const Counter = {
     count: 0,
@@ -97,7 +97,7 @@ function task4_counter() {
   }
 }
 
-// ===== task 5 =====
+/* Задание 5 */
 function task5_commasToDots() {
   const raw = prompt("Введите список слов, разделённых запятыми:");
   if (raw === null) return;
@@ -110,7 +110,7 @@ function task5_commasToDots() {
   alert(words.join("."));
 }
 
-// ===== task 6 =====
+/* Задание 6 */
 function task6_palindrome() {
   const raw = prompt("Введите строку:");
   if (raw === null) return;
