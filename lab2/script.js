@@ -169,72 +169,47 @@ function getFiveIps() {
   return ips;
 }
 
-function createIpInfoElement(ip, country) {
+function createIpInfoElement(ip, country, countryCode) {
   const div = document.createElement("div");
   div.className = "ip-info";
-  div.textContent = `IP: ${ip}\nСтрана: ${country}`;
+  div.textContent = `IP: ${ip}\nСтрана: ${country}\nКод страны: ${countryCode}`;
   return div;
 }
 
-function checkIp(ip) {
-  return fetch(`https://geoiplookup.io/api/${ip}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Ошибка запроса к API");
-      }
-      return response.json();
-    });
+function getIpInfo(ip) {
+    return fetch("https://json.geoiplookup.io/" + ip)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error("HTTP error");
+            }
+            return response.json();
+        });
 }
 
-/* =========================
-   Задание 5
-   Проверка 5 IP через API
-   ========================= */
+async function runTask5() {
+    const bannedCountryCodes = ["RU", "BY", "AF", "CN", "VE", "IR"];
+    const ips = getFiveIps();
 
-btnTask5.addEventListener("click", async () => {
-  clearResult();
+    try {
+        const promises = ips.map(function(ip) {
+            return getIpInfo(ip);
+        });
 
-  const blockedCountries = [
-    "Russia",
-    "Belarus",
-    "Afghanistan",
-    "China",
-    "Venezuela",
-    "Iran"
-  ];
+        const results = await Promise.all(promises);
 
-  const ips = getFiveIps();
+        const hasBannedCountry = results.some(function(item) {
+            return bannedCountryCodes.includes(item.country_code);
+        });
 
-  try {
-    const checks = ips.map(async (ip) => {
-      const data = await checkIp(ip);
-
-      return {
-        ip: ip,
-        country: data.country_name || "Unknown"
-      };
-    });
-
-    const results = await Promise.all(checks);
-
-    results.forEach((item) => {
-      result.appendChild(createIpInfoElement(item.ip, item.country));
-    });
-
-    const hasBlockedCountry = results.some((item) =>
-      blockedCountries.includes(item.country)
-    );
-
-    if (hasBlockedCountry) {
-      showMessage("Our services are not available in your country");
-      alert("Our services are not available in your country");
-    } else {
-      showMessage("Welcome to our website!");
-      alert("Welcome to our website!");
+        if (hasBannedCountry) {
+            alert("Our services are not available in your country");
+        } else {
+            alert("Welcome to our website!");
+        }
+    } catch (error) {
+        alert("Ошибка при проверке IP-адресов.");
+        console.error(error);
     }
-  } catch (error) {
-    showMessage("Не удалось проверить один или несколько IP-адресов.");
-    alert("Не удалось проверить один или несколько IP-адресов.");
-    console.error(error);
-  }
-});
+}
+
+btnTask5.addEventListener("click", runTask5);
