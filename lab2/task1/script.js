@@ -10,7 +10,7 @@ const btnTask5 = document.getElementById("t5");
    ========================= */
 
 /* счетчик увеличивается именно при каждой загрузке страницы */
-let pageLoadCount = Number(localStorage.getItem("pageLoadCount")) || 0;
+let pageLoadCount = localStorage.getItem("pageLoadCount") || 0;
 pageLoadCount++;
 localStorage.setItem("pageLoadCount", pageLoadCount);
 
