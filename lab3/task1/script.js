@@ -29,15 +29,18 @@ const clickRateElement = document.getElementById("clickRate");
 const CLICK_COUNT_KEY = "lab3_click_count";
 const FIRST_CLICK_TIME_KEY = "lab3_first_click_time";
 
+// несбрасываемый счетчик благодаря хранению в браузере посредством localStorage (если в нем нет - берем 0)
 let clickCount = Number(localStorage.getItem(CLICK_COUNT_KEY)) || 0;
-let firstClickTime = Number(localStorage.getItem(FIRST_CLICK_TIME_KEY)) || 0;
+let firstClickTime = Number(localStorage.getItem(FIRST_CLICK_TIME_KEY)) || 0; 
 
 function saveClickerState() {
     localStorage.setItem(CLICK_COUNT_KEY, String(clickCount));
     localStorage.setItem(FIRST_CLICK_TIME_KEY, String(firstClickTime));
 }
 
+/* считаем среднее время */
 function calculateAverageClicksPerSecond() {
+    /* деление на 0 */
     if (clickCount === 0 || firstClickTime === 0) {
         return 0;
     }
@@ -57,7 +60,9 @@ function renderClicker() {
     clickRateElement.textContent = calculateAverageClicksPerSecond().toFixed(2);
 }
 
+/* обработка клика */
 clickBtn.addEventListener("click", () => {
+    /* начало отсчета */
     if (clickCount === 0 && firstClickTime === 0) {
         firstClickTime = Date.now();
     }
