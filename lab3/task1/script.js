@@ -5,11 +5,10 @@
 
 /* ------------------------------
    Задание 2
-   Запрет выделения, копирования
-   и контекстного меню
    ------------------------------ */
 const protectedPage = document.getElementById("protectedPage");
 
+/* отмена пкм, копированя, вырезания и выделения текста */
 ["contextmenu", "copy", "cut", "selectstart", "dragstart"].forEach((eventName) => {
     protectedPage.addEventListener(eventName, (event) => {
         event.preventDefault();
