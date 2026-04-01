@@ -17,9 +17,6 @@ const protectedPage = document.getElementById("protectedPage");
 
 /* ------------------------------
    Задания 3–4
-   Кликер + localStorage +
-   среднее количество кликов
-   в секунду
    ------------------------------ */
 const clickBtn = document.getElementById("clickBtn");
 const resetClickerBtn = document.getElementById("resetClickerBtn");
@@ -84,8 +81,6 @@ renderClicker();
 
 /* ------------------------------
    Задания 5–6
-   Калькулятор со скобками
-   и ОПН
    ------------------------------ */
 const display = document.getElementById("display");
 const clearBtn = document.getElementById("clearBtn");
@@ -108,10 +103,12 @@ function clearExpression() {
     updateDisplay(expression);
 }
 
+/* является ли символ оператором */
 function isOperator(token) {
     return ["+", "-", "*", "/"].includes(token);
 }
 
+/* приоритет оператора */
 function precedence(operator) {
     if (operator === "+" || operator === "-") {
         return 1;
@@ -124,6 +121,7 @@ function precedence(operator) {
     return 0;
 }
 
+/* сериализация - разбиение на символы */
 function tokenize(input) {
     const tokens = [];
     let currentNumber = "";
@@ -232,6 +230,7 @@ function infixToRpn(tokens) {
     return output;
 }
 
+/* определения обрабтной польской нотации */
 function evaluateRpn(rpn) {
     const stack = [];
 
