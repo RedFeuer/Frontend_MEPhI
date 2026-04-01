@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа 3 — HTML Basics, DOM API</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    /* стили */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    .page-title {
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .protected {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .welcome {
+        font-family: "Times New Roman", serif;
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 18px;
+    }
+
+    .shop-text {
+        font-family: "Times New Roman", serif;
+        font-size: 24px;
+        line-height: 1.3;
+        margin-bottom: 18px;
+    }
+
+    .theorem-line {
+        font-family: "Times New Roman", serif;
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    .price-table {
+        border-collapse: collapse;
+        width: 660px;
+        font-family: "Times New Roman", serif;
+        font-size: 22px;
+    }
+
+    .price-table td {
+        border: 2px solid black;
+        padding: 8px 6px;
+        vertical-align: middle;
+    }
+
+    .status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 14px;
+    }
+
+    .clicker-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .stats {
+      font-size: 18px;
+    }
+
+    .muted {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .calculator {
+      max-width: 360px;
+    }
+
+    .display {
+      width: 100%;
+      height: 56px;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      font-size: 24px;
+      text-align: right;
+      background: #f9fafb;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .calc-btn {
+      height: 54px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #e5e7eb;
+    }
+
+    .calc-btn.operator {
+      background: #dbeafe;
+    }
+
+    .calc-btn.equal {
+      background: #2563eb;
+      color: white;
+    }
+
+    .calc-btn.clear {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .calc-hint {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="page-title">
+      <h1>Лабораторная работа 3</h1>
+      <p>HTML Basics, DOM API</p>
+    </div>
+
+    <div class="grid">
+      <section class="card protected" id="protectedPage">
+        <h2>Задания 1–2</h2>
+
+        <div class="welcome">Добро пожаловать!</div>
+
+        <div class="shop-text">
+            <em>Приветствуем</em>
+            <strong><u>вас</u> в нашем</strong>
+            <a href="https://example.com/" target="_blank">магазине</a>!
+        </div>
+        <div class="theorem-line">
+            &lt;h1&gt;Теорема Пифагора&lt;/h1&gt;:
+            <i>c</i><sup>2</sup> = <i>a</i><sup>2</sup> + <i>b</i><sup>2</sup>
+        </div>
+
+        <table class="price-table">
+            <tr>
+                <td colspan="2">Информация</td>
+            </tr>
+            <tr>
+                <td>Старая цена: <s>1000 ₽</s></td>
+                <td>Новая цена: 500 ₽</td>
+            </tr>
+        </table>
+
+        <div class="status">
+          Для этого блока отключены выделение текста, копирование и контекстное меню.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Задания 3–4</h2>
+        <div class="clicker-box">
+          <button class="btn" id="clickBtn">Нажми меня</button>
+          <div class="stats">Счётчик: <strong id="clickCount">0</strong></div>
+          <div class="stats">Среднее количество кликов в секунду: <strong id="clickRate">0.00</strong></div>
+          <div class="muted">Счётчик сохраняется после перезагрузки браузера.</div>
+          <button class="btn" id="resetClickerBtn">Сбросить кликер</button>
+        </div>
+      </section>
+
+      <section class="card calculator">
+        <h2>Задания 5–6</h2>
+        <input class="display" id="display" type="text" value="" readonly />
+
+        <div class="buttons">
+          <button class="calc-btn" data-value="7">7</button>
+          <button class="calc-btn" data-value="8">8</button>
+          <button class="calc-btn" data-value="9">9</button>
+          <button class="calc-btn operator" data-value="/">/</button>
+
+          <button class="calc-btn" data-value="4">4</button>
+          <button class="calc-btn" data-value="5">5</button>
+          <button class="calc-btn" data-value="6">6</button>
+          <button class="calc-btn operator" data-value="*">*</button>
+
+          <button class="calc-btn" data-value="1">1</button>
+          <button class="calc-btn" data-value="2">2</button>
+          <button class="calc-btn" data-value="3">3</button>
+          <button class="calc-btn operator" data-value="-">-</button>
+
+          <button class="calc-btn" data-value="0">0</button>
+          <button class="calc-btn" data-value="(">(</button>
+          <button class="calc-btn" data-value=")">)</button>
+          <button class="calc-btn operator" data-value="+">+</button>
+
+          <button class="calc-btn clear" id="clearBtn">C</button>
+          <button class="calc-btn equal" id="equalBtn" style="grid-column: span 3;">=</button>
+        </div>
+
+        <div class="calc-hint">
+          Калькулятор поддерживает обычные выражения со скобками и вычисляет их через обратную польскую нотацию.
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
