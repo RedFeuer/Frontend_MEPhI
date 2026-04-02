@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лабораторная работа 3 — CSS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 72px;
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            color: #111827;
+        }
+
+        .fixed-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            background: #ffffff;
+            border-bottom: 1px solid #d1d5db;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .fixed-menu a {
+            text-decoration: none;
+            color: #111827;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .fixed-menu a:hover {
+            color: #2563eb;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .task-section {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            scroll-margin-top: 90px;
+        }
+
+        .task-title {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+        .task-subtitle {
+            margin-top: 0;
+            margin-bottom: 24px;
+            color: #6b7280;
+        }
+
+        /* =========================
+           Задание 1
+           ========================= */
+
+        .task1-demo {
+            font-family: "Times New Roman", serif;
+        }
+
+        .welcome {
+            font-family: "Times New Roman", serif;
+            font-size: 54px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #000000;
+            margin-bottom: 22px;
+        }
+
+        .shop-text {
+            font-family: "Times New Roman", serif;
+            font-size: 32px;
+            line-height: 1.3;
+            margin-bottom: 22px;
+        }
+
+        .greeting-part {
+            font-style: italic;
+        }
+
+        .r {
+            color: #ff0000;
+        }
+
+        .b {
+            color: #0000ff;
+        }
+
+        .letter-link {
+            text-decoration: underline;
+            font-style: normal;
+        }
+
+        .letter-link .r,
+        .letter-link .b {
+            text-decoration: underline;
+        }
+
+        .store-link {
+            color: #0000ee;
+            text-decoration: underline;
+            font-style: normal;
+        }
+
+        .greeting {
+            font-style: italic;
+            color: #ff0000;
+            text-shadow: 1px 0 0 #0000ff;
+        }
+
+        .shop-text strong {
+            color: #000000;
+            font-weight: 700;
+        }
+
+        .mini-link {
+            color: #0000ee;
+            text-decoration: underline;
+        }
+
+        .theorem-line {
+            font-family: "Times New Roman", serif;
+            font-size: 24px;
+            color: #000000;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .theorem-title {
+            font-family: "Comic Sans MS", cursive;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .formula {
+            font-size: 28px;
+        }
+
+        .task1-table {
+            width: 100%;
+            max-width: 760px;
+            border-collapse: collapse;
+            font-family: "Times New Roman", serif;
+            font-size: 22px;
+            background: #1ee7e7;
+        }
+
+        .task1-table td {
+            border: 2px solid #000000;
+            padding: 10px 12px;
+        }
+
+        /* =========================
+           Задание 2
+           ========================= */
+
+        .device-demo {
+            min-height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #cbd5e1;
+            border-radius: 16px;
+            background: #f8fafc;
+        }
+
+        .device-label {
+            font-size: 44px;
+            font-weight: 700;
+            color: #1d4ed8;
+            text-align: center;
+        }
+
+        .device-label::after {
+            content: "Desktop";
+        }
+
+        @media (max-width: 1023px) {
+            .device-label::after {
+                content: "Tablet";
+            }
+        }
+
+        @media (max-width: 767px) {
+            .device-label::after {
+                content: "Mobile";
+            }
+        }
+
+        /* =========================
+           Задание 3
+           ========================= */
+
+        .menu-note {
+            margin-bottom: 18px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .scroll-block {
+            min-height: 260px;
+            padding: 22px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+        }
+
+        .scroll-block h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .scroll-block p {
+            line-height: 1.6;
+        }
+
+        /* =========================
+           Задание 4
+           ========================= */
+
+        .circle-demo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .blue-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: blue;
+        }
+
+        .circle-note {
+            color: #4b5563;
+            font-size: 18px;
+        }
+
+        /* =========================
+           Задание 5
+           ========================= */
+
+        .follow-note {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .cursor-circle {
+            position: fixed;
+            left: 120px;
+            top: 120px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: blue;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0.85;
+            z-index: 999;
+        }
+
+        /* =========================
+           Задание 6
+           ========================= */
+
+        .layout-sample {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .layout-logo {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .layout-menu {
+            background: #e7e7e7;
+            padding: 18px 16px;
+            margin-bottom: 18px;
+        }
+
+        .layout-menu a {
+            margin: 0 12px;
+            color: #6b46c1;
+            text-decoration: underline;
+            font-size: 16px;
+        }
+
+        .layout-feature {
+            background: #e7e7e7;
+            min-height: 170px;
+            padding-top: 18px;
+            margin-bottom: 18px;
+            font-size: 18px;
+        }
+
+        .layout-columns {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .layout-column {
+            flex: 1;
+            min-height: 170px;
+            background: #e7e7e7;
+            padding-top: 18px;
+            font-size: 18px;
+        }
+
+        .layout-footer {
+            background: #e7e7e7;
+            padding: 22px 16px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 96px;
+            }
+
+            .fixed-menu {
+                height: auto;
+                padding: 12px;
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .task-section {
+                padding: 22px;
+            }
+
+            .welcome {
+                font-size: 40px;
+            }
+
+            .shop-text,
+            .theorem-line {
+                font-size: 22px;
+            }
+
+            .theorem-title,
+            .formula {
+                font-size: 24px;
+            }
+
+            .task1-table {
+                font-size: 20px;
+            }
+
+            .device-label {
+                font-size: 34px;
+            }
+
+            .layout-columns {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Задание 3 -->
+    <nav class="fixed-menu">
+        <a href="#home">Главная</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#about">О нас</a>
+    </nav>
+
+    <!-- Задание 5 -->
+    <div class="cursor-circle" id="cursorCircle"></div>
+
+    <main class="page">
+        <!-- Задание 1 -->
+        <section class="task-section" id="task1">
+            <h1 class="task-title">Задание 1</h1>
+            <p class="task-subtitle">HTML-документ с оформлением через CSS</p>
+
+            <div class="task1-demo">
+                <div class="welcome">Добро пожаловать!</div>
+
+                <div class="shop-text">
+                    <span class="greeting-part">
+                        <span class="r">П</span><span class="b">р</span><span class="r">и</span><span class="b">в</span><span class="r">е</span><span class="b">т</span><span class="r">с</span><span class="b">т</span><span class="r">в</span><span class="b">у</span><span class="r">е</span><span class="b">м</span>
+                    </span>
+                    <a class="letter-link" href="#"><span class="r">в</span><span class="b">а</span><span class="r">с</span></a>
+                    <span class="b"> </span>
+                    <span class="b">в</span>
+                    <span class="r">н</span><span class="b">а</span><span class="r">ш</span><span class="b">е</span><span class="r">м</span>
+                    <a class="store-link" href="https://example.com/" target="_blank">магазине</a>!
+                </div>
+
+                <div class="theorem-line">
+                    &lt;h1&gt;<span class="theorem-title">Теорема Пифагора</span>&lt;/h1&gt;:
+                    <span class="formula"><i>c</i><sup>2</sup> = <i>a</i><sup>2</sup> + <i>b</i><sup>2</sup></span>
+                </div>
+
+                <table class="task1-table">
+                    <tr>
+                        <td colspan="2">Информация</td>
+                    </tr>
+                    <tr>
+                        <td>Старая цена: <s>1000 ₽</s></td>
+                        <td>Новая цена: 500 ₽</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Задание 2 -->
+        <section class="task-section" id="task2">
+            <h2 class="task-title">Задание 2</h2>
+            <p class="task-subtitle">
+                Надпись меняется только через CSS media queries, без JavaScript.
+            </p>
+
+            <div class="device-demo">
+                <div class="device-label"></div>
+            </div>
+        </section>
+
+        <!-- Задание 3 -->
+        <section class="task-section" id="task3">
+            <h2 class="task-title">Задание 3</h2>
+            <p class="menu-note">
+                Верхнее меню закреплено через <code>position: fixed</code> и не исчезает при прокрутке страницы.
+            </p>
+
+            <div class="scroll-block" id="home">
+                <h3>Главная</h3>
+                <p>Это демонстрационный блок для проверки фиксированного меню.</p>
+                <p>Прокрути страницу вниз: меню останется сверху.</p>
+            </div>
+
+            <div class="scroll-block" id="catalog">
+                <h3>Каталог</h3>
+                <p>Этот блок нужен как содержимое и как точка перехода по пункту меню.</p>
+                <p>Навигация сверху остаётся на месте при любом скролле.</p>
+            </div>
+
+            <div class="scroll-block" id="contacts">
+                <h3>Контакты</h3>
+                <p>Здесь можно проверить переход по якорной ссылке из верхнего меню.</p>
+                <p>Пункт меню не уезжает вместе со страницей.</p>
+            </div>
+
+            <div class="scroll-block" id="about">
+                <h3>О нас</h3>
+                <p>Последний демонстрационный блок для проверки поведения фиксированного меню.</p>
+                <p>Это и есть суть 3-го задания.</p>
+            </div>
+        </section>
+
+        <!-- Задание 4 -->
+        <section class="task-section" id="task4">
+            <h2 class="task-title">Задание 4</h2>
+            <p class="task-subtitle">
+                Обычный <code>div</code> превращён в синий круг радиусом 30px.
+            </p>
+
+            <div class="circle-demo">
+                <div class="blue-circle"></div>
+                <div class="circle-note">
+                    Радиус 30px означает диаметр 60px, поэтому размер блока 60x60 px.
+                </div>
+            </div>
+        </section>
+
+        <!-- Задание 5 -->
+        <section class="task-section" id="task5">
+            <h2 class="task-title">Задание 5</h2>
+            <p class="follow-note">
+                Круг из предыдущего задания движется за курсором.
+                Для этого используется CSS-позиционирование и JavaScript-событие
+                <code>mousemove</code>.
+            </p>
+        </section>
+
+        <!-- Задание 6 -->
+        <section class="task-section" id="task6">
+            <h2 class="task-title">Задание 6</h2>
+            <p class="task-subtitle">Макет страницы по образцу из задания.</p>
+
+            <div class="layout-sample">
+                <div class="layout-logo">Логотип</div>
+
+                <div class="layout-menu">
+                    <a href="#">Домой</a>
+                    <a href="#">Товары</a>
+                    <a href="#">Услуги</a>
+                    <a href="#">О нас</a>
+                    <a href="#">Контакты</a>
+                </div>
+
+                <div class="layout-feature">Характеристика</div>
+
+                <div class="layout-columns">
+                    <div class="layout-column">Колонка 1</div>
+                    <div class="layout-column">Колонка 2</div>
+                    <div class="layout-column">Колонка 3</div>
+                </div>
+
+                <div class="layout-footer">© МЕРН 2023</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
