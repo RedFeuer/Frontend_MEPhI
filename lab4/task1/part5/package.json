@@ -1,0 +1,11 @@
+{
+  "name": "lab4-task1-part3",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "lessc less/style.less css/style.css"
+  },
+  "devDependencies": {
+    "less": "^4.2.0"
+  }
+}
