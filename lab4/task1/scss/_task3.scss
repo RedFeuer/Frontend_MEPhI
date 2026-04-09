@@ -1,0 +1,96 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+/* =========================
+   Задание 3
+   Макет с вложенными правилами
+   и миксинами
+   ========================= */
+
+.layout-demo {
+  max-width: 900px;
+  margin: 0 auto;
+
+  &__header {
+    margin-bottom: $gap-sm;
+  }
+
+  &__logo {
+    @include section-title;
+  }
+
+  &__nav {
+    @include panel(18px);
+    @include flex-center(row, center, center, 24px);
+
+    flex-wrap: wrap;
+  }
+
+  &__nav-link {
+    color: $link-color;
+    font-size: 16px;
+
+    &:hover {
+      text-decoration: none;
+      opacity: 0.8;
+    }
+  }
+
+  &__feature {
+    @include panel(28px, 160px);
+    @include flex-center();
+
+    margin-bottom: $gap-sm;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  &__columns {
+    @include responsive-grid(180px);
+
+    margin-bottom: $gap-sm;
+  }
+
+  &__column {
+    @include panel(24px, 170px);
+    @include flex-center();
+
+    text-align: center;
+    font-size: 22px;
+  }
+
+  &__footer {
+    @include panel(18px);
+    @include flex-center();
+
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-demo {
+    &__logo {
+      font-size: 24px;
+    }
+
+    &__nav {
+      gap: 14px;
+    }
+
+    &__feature,
+    &__column {
+      font-size: 18px;
+      min-height: 120px;
+    }
+
+    &__footer {
+      font-size: 16px;
+    }
+  }
+
+  .task-section {
+    &__title {
+      font-size: 24px;
+    }
+  }
+}
