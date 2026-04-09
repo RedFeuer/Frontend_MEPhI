@@ -1,0 +1,166 @@
+$font-main: Arial, Helvetica, sans-serif
+$bg-page: #f2f2f2
+$bg-panel: #dedede
+$text-main: #222222
+$text-muted: #555555
+$link-color: #6b4ba1
+
+$container-width: 1100px
+$radius-sm: 6px
+$gap-sm: 12px
+$gap-md: 20px
+$gap-lg: 28px
+$shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08)
+
+@mixin flex-center($direction: row, $justify: center, $align: center, $gap: 0)
+  display: flex
+  flex-direction: $direction
+  justify-content: $justify
+  align-items: $align
+  gap: $gap
+
+@mixin panel($padding: 20px, $min-height: auto)
+  background-color: $bg-panel
+  padding: $padding
+  min-height: $min-height
+  border-radius: $radius-sm
+  box-shadow: $shadow-soft
+
+@mixin section-title
+  font-size: 28px
+  font-weight: 700
+  text-align: center
+  margin: 0 0 $gap-md
+
+@mixin responsive-grid($min-width: 220px)
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr))
+  gap: $gap-sm
+
+*,
+*::before,
+*::after
+  box-sizing: border-box
+
+html,
+body
+  margin: 0
+  padding: 0
+  font-family: $font-main
+  background-color: $bg-page
+  color: $text-main
+
+body
+  min-height: 100vh
+
+.page
+  padding: 32px 16px 48px
+
+.container
+  max-width: $container-width
+  margin: 0 auto
+
+.task-section
+  margin-bottom: 48px
+
+  &__title
+    margin: 0 0 12px
+    font-size: 30px
+    line-height: 1.2
+
+  &__description
+    margin: 0 0 20px
+    color: $text-muted
+    font-size: 16px
+    line-height: 1.5
+
+code
+  background-color: #e9e9e9
+  padding: 2px 6px
+  border-radius: 4px
+
+.numbers-list
+  @include responsive-grid(70px)
+  list-style: none
+  margin: 0
+  padding: 0
+
+  &__item
+    @include panel(14px, 64px)
+    @include flex-center()
+    font-size: 22px
+    font-weight: 700
+    transition: transform 0.2s ease, box-shadow 0.2s ease
+
+    &:hover
+      transform: translateY(-2px)
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12)
+
+  @for $i from 1 through 100
+    &__item--#{$i}
+      color: rgb($i, 256 - $i, 0)
+
+.layout-demo
+  max-width: 900px
+  margin: 0 auto
+
+  &__header
+    margin-bottom: $gap-sm
+
+  &__logo
+    @include section-title
+
+  &__nav
+    @include panel(18px)
+    @include flex-center(row, center, center, 24px)
+    flex-wrap: wrap
+
+  &__nav-link
+    color: $link-color
+    font-size: 16px
+
+    &:hover
+      text-decoration: none
+      opacity: 0.8
+
+  &__feature
+    @include panel(28px, 160px)
+    @include flex-center()
+    margin-bottom: $gap-sm
+    text-align: center
+    font-size: 22px
+
+  &__columns
+    @include responsive-grid(180px)
+    margin-bottom: $gap-sm
+
+  &__column
+    @include panel(24px, 170px)
+    @include flex-center()
+    text-align: center
+    font-size: 22px
+
+  &__footer
+    @include panel(18px)
+    @include flex-center()
+    font-size: 18px
+
+@media (max-width: 768px)
+  .layout-demo
+    &__logo
+      font-size: 24px
+
+    &__nav
+      gap: 14px
+
+    &__feature,
+    &__column
+      font-size: 18px
+      min-height: 120px
+
+    &__footer
+      font-size: 16px
+
+  .task-section
+    &__title
+      font-size: 24px

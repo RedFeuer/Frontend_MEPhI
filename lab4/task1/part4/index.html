@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа 4 — part1</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div id="app" class="page">
+    <main class="container">
+      <!-- Задание 2 -->
+      <section class="task-section">
+        <h1 class="task-section__title">Задание 2 — Числа от 1 до 100</h1>
+        <p class="task-section__description">
+          Каждое число окрашено по формуле:
+          <code>red: n, green: 256 - n, blue: 0</code>
+        </p>
+
+        <ul class="numbers-list">
+          <li
+            v-for="number in numbers"
+            :key="number"
+            class="numbers-list__item"
+            :class="`numbers-list__item--${number}`"
+          >
+            {{ number }}
+          </li>
+        </ul>
+      </section>
+
+      <!-- Задание 3 -->
+      <section class="task-section">
+        <h2 class="task-section__title">Задание 3 — Макет с вложенными правилами и миксинами</h2>
+
+        <div class="layout-demo">
+          <header class="layout-demo__header">
+            <div class="layout-demo__logo">Логотип</div>
+
+            <nav class="layout-demo__nav">
+              <a
+                v-for="item in navItems"
+                :key="item"
+                href="#"
+                class="layout-demo__nav-link"
+              >
+                {{ item }}
+              </a>
+            </nav>
+          </header>
+
+          <section class="layout-demo__feature">
+            Характеристика
+          </section>
+
+          <section class="layout-demo__columns">
+            <article
+              v-for="column in columns"
+              :key="column"
+              class="layout-demo__column"
+            >
+              {{ column }}
+            </article>
+          </section>
+
+          <footer class="layout-demo__footer">
+            © MEPHI 2026
+          </footer>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

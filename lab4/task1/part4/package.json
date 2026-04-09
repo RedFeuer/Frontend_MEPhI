@@ -1,0 +1,12 @@
+{
+  "name": "lab4-task1-part2",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "sass sass/style.sass css/style.css",
+    "watch": "sass --watch sass/style.sass:css/style.css"
+  },
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}
