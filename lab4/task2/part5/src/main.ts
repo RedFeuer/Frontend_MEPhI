@@ -1,0 +1,25 @@
+import { BinaryTree } from "./BinaryTree.js";
+
+const tree: BinaryTree = new BinaryTree();
+
+tree.insert(8);
+tree.insert(3);
+tree.insert(10);
+tree.insert(1);
+tree.insert(6);
+tree.insert(14);
+tree.insert(4);
+tree.insert(7);
+tree.insert(13);
+
+console.log("Содержимое дерева (inorder):", tree.inorder());
+console.log("Высота дерева:", tree.height());
+console.log("Поиск 6:", tree.search(6));
+console.log("Поиск 99:", tree.search(99));
+
+console.log("Обновление 6 -> 5:", tree.update(6, 5));
+console.log("После update:", tree.inorder());
+
+tree.remove(10);
+console.log("После удаления 10:", tree.inorder());
+console.log("Высота дерева после удаления:", tree.height());
