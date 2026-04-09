@@ -1,0 +1,13 @@
+{
+  "name": "lab4-task2-part6",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
